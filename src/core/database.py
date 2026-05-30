@@ -55,7 +55,6 @@ class DatabaseManager:
     def create_tables(cls):
         """Create database tables."""
         from src.models.orm import Base  # Import here to avoid circular imports
-
         if cls._engine is None:
             raise ValueError("Database not initialized")
         Base.metadata.create_all(bind=cls._engine)
@@ -67,7 +66,7 @@ class DatabaseManager:
         if cls._session_local is None:
             cls.initialize()
         return cls._session_local()
-
+        
     @classmethod
     def close(cls):
         """Close database connection."""

@@ -4,9 +4,9 @@ setup(
     name="policyguard",
     version="0.1.0",
     description="Privacy-first AI policy framework for non-profits",
-    author="Your Name",
-    author_email="your.email@example.com",
-    url="https://github.com/yourusername/policyguard",
+    author="Tejaswini Gonegandla",
+    author_email="tejaswiniveliventi@gmail.com",
+    url="https://github.com/tejaswiniveliventi/policyguard",
     packages=find_packages(),
     python_requires=">=3.10",
     classifiers=[

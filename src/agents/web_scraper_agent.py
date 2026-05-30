@@ -2,11 +2,13 @@
 
 from typing import Dict, Any, List
 from src.agents.base_agent import BaseAgent
-from src.services.web_intelligence.bright_data import BrightDataScraper
+from src.services.web_intelligence import bright_data_scraper
+import logging
 from src.models.orm import WebDataSnapshot
 import uuid
 from datetime import datetime
 
+logger = logging.getLogger("policyguard.agents.web_scraper")
 
 class WebScraperAgent(BaseAgent):
     """
@@ -23,7 +25,34 @@ class WebScraperAgent(BaseAgent):
             role="Regulatory Intelligence Analyst",
             goal="Fetch real-time regulatory updates, security threats, and industry benchmarks",
         )
-        self.scraper = BrightDataScraper(api_key=bright_data_api_key)
+        
+        self.scraper = bright_data_scraper
+
+    def fetch_data(self, org_industry: str, ai_use_cases: list) -> dict:
+        """
+        Fetch regulatory, threat, and benchmark data using Bright Data API.
+        
+        Falls back to mock data if:
+        - API key not configured
+        - API is down
+        - Rate limited
+        """
+        
+        logger.info(f"Scraping web data for {org_industry} with AI use cases: {ai_use_cases}")
+        
+        # Fetch from Bright Data (or mock if not configured)
+        regulatory = self.scraper.search_regulatory_updates(org_industry, ai_use_cases)
+        threats = self.scraper.search_threat_intelligence()
+        benchmarks = self.scraper.search_industry_benchmarks(org_industry)
+        
+        logger.info(f"Web scraping complete: {len(regulatory)} regulatory, "
+                   f"{len(threats)} threat, {len(benchmarks)} benchmark sources")
+        
+        return {
+            "regulatory_updates": regulatory,
+            "threat_intelligence": threats,
+            "industry_benchmarks": benchmarks
+        }
 
     def execute(
         self, org_id: str, industry: str, ai_use_cases: List[str], **kwargs
@@ -77,6 +106,26 @@ class WebScraperAgent(BaseAgent):
                 "threat_intelligence": [],
                 "industry_benchmarks": [],
             }
+
+    def create_agent(self):
+        """Create CrewAI agent."""
+        from crewai import Agent
+        
+        return Agent(
+            role="Regulatory Intelligence Analyst",
+            goal="Fetch real-time regulatory updates, security threats, and industry benchmarks "
+                 "relevant to non-profits using Bright Data web intelligence",
+            backstory="""You are an expert in compliance and regulatory updates for non-profits. 
+            You search for and synthesize the latest information on:
+            - Data privacy regulations (GDPR, state laws, AI Act)
+            - Security threats and advisories
+            - Industry best practices and case studies
+            
+            You ensure organizations stay compliant and aware of emerging risks.
+            You use Bright Data to access real-time web intelligence.""",
+            verbose=True,
+            allow_delegation=False
+        )
 
     def create_snapshots(
         self, org_id: str, web_data: Dict[str, Any]

@@ -25,13 +25,16 @@ class GroqLLMProvider(BaseLLMProvider):
     ) -> str:
         """Call Groq API."""
         try:
-            message = self.client.messages.create(
+            client_chat = self.client.chat.completions.create(
+                messages=[
+                    {"role": "user", "content": prompt}
+                    ],
                 model=self.model,
                 max_tokens=max_tokens,
                 temperature=temperature,
-                messages=[{"role": "user", "content": prompt}],
+            
             )
-            return message.content[0].text
+            return client_chat.choices[0].message.content
         except Exception as e:
             raise LLMError(f"Groq API error: {e}", provider="groq")
 
