@@ -1,0 +1,76 @@
+/* ==========================================================================
+   BUTTONS (Fixed contrast and color collision bugs)
+   ========================================================================== */
+
+.button {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* Primary Button: Solid Background, Solid White Text */
+.button-primary {
+  background-color: #4e73df !important; /* Force distinct blue branding */
+  color: #ffffff !important;           /* Force crisp white readable text */
+  border: 1px solid #4e73df !important;
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: #2e59d9 !important;
+  border-color: #224abe !important;
+  opacity: 1 !important;
+}
+
+/* Secondary Button (Previous / Add Vendor / Add System): Distinct Dark Gray Text on Gray Background */
+.button-secondary {
+  background-color: #f8f9fa !important;  /* Soft off-white/light gray background */
+  color: #4e5d6c !important;             /* Clear dark slate readable text */
+  border: 1px solid var(--color-border-secondary) !important;
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: #eaecf1 !important;
+  color: #212529 !important;
+}
+
+/* Success Button (Final Submit) */
+.button-success {
+  background-color: #1cc88a !important;
+  color: #ffffff !important;
+  border: 1px solid #1cc88a !important;
+}
+
+.button-success:hover:not(:disabled) {
+  background-color: #17a673 !important;
+}
+
+/* Danger Button (Remove Card Elements) */
+.button-danger {
+  background-color: #e74a3b !important;
+  color: #ffffff !important;
+  border: 1px solid #e74a3b !important;
+}
+
+.button-danger:hover:not(:disabled) {
+  background-color: #be2617 !important;
+}
+
+/* Disabled State For All Buttons */
+.button:disabled,
+.button-disabled {
+  background-color: #eaecf0 !important;
+  color: #a0aec0 !important;
+  border-color: #e2e8f0 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}

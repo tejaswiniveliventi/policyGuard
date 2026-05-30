@@ -6,6 +6,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import useAppStore from '../store/appStore';
+import '../styles/settings.css';
+import '../styles/components.css';
+import '../styles/variables.css';
 
 export default function InitialSetup() {
   const navigate = useNavigate();

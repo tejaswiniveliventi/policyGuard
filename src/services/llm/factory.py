@@ -25,7 +25,7 @@ def get_llm_provider(config: dict = None) -> BaseLLMProvider:
             raise ConfigurationError("GROQ_API_KEY not configured")
         return GroqLLMProvider(
             api_key=config["groq_api_key"],
-            model=config.get("model", "mixtral-8x7b-32768"),
+            model=config.get("model", "llama-3.1-8b-instant"),
         )
 
     elif provider_name == "openai":

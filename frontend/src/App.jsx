@@ -1,55 +1,89 @@
 /**
- * Main App Component with Routing
+ * App.jsx
+ * 
+ * Main application router and authentication wrapper.
+ * 
+ * Responsibilities:
+ * - Set up React Router with all routes
+ * - Implement authentication protection
+ * - Load initial app state (user, organization)
+ * - Handle loading states
+ * 
+ * Routes:
+ * - Public: / (landing), /signin
+ * - Protected: /dashboard, /discovery, /assessment/:id, /policies, /settings/*
  */
 
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import useAppStore from './store/appStore';
-import api from './services/api';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAppStore } from './store/appStore';
 
 // Pages
-import InitialSetup from './pages/InitialSetup';
+import Landing from './pages/Landing';
+import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
-import AlertDetail from './pages/AlertDetail';
+import EnterpriseDiscovery from './pages/EnterpriseDiscovery';
+import AssessmentResults from './pages/AssessmentResults';
+import Policies from './pages/Policies';
+import PolicyDetails from './pages/PolicyDetails';
+import Alerts from './pages/Alerts';
+import ComplianceFrameworks from './pages/ComplianceFrameworks';
+import AuditLog from './pages/AuditLog';
 import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
 
-function App() {
-  const currentOrg = useAppStore((state) => state.currentOrg);
-  const setCurrentOrg = useAppStore((state) => state.setCurrentOrg);
+// Components
+import LoadingSpinner from './components/common/LoadingSpinner';
+
+export default function App() {
+  const { user, loading, initializeAuth } = useAppStore();
 
   useEffect(() => {
-    // Check for saved org on mount
-    const orgId = localStorage.getItem('orgId');
-    if (orgId && !currentOrg) {
-      api.getOrg(orgId).then(setCurrentOrg).catch(console.error);
-    }
-
-    // Check backend health
-    api.healthCheck().then(console.log).catch(console.error);
+    // Initialize authentication on app load
+    initializeAuth();
   }, []);
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        {/* Setup Route */}
-        <Route path="/setup" element={<InitialSetup />} />
-
-        {/* Dashboard Routes (require org) */}
+        {/* Public routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/discovery" element={<EnterpriseDiscovery />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/alert/:alertId" element={<AlertDetail />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/discovery" element={<EnterpriseDiscovery />} />
+        <Route path="/assessment/:assessmentId" element={<AssessmentResults />} />
+        <Route path="/policies" element={<Policies />} /> 
+        <Route path="/policies/:policyId" element={<PolicyDetails />} />
+        <Route path="/alerts" element={<Alerts />} />
+        <Route path="/frameworks" element={<ComplianceFrameworks />} />
+        <Route path="/audit" element={<AuditLog />} />
+        <Route path="/settings/*" element={<Settings />} />
 
-        {/* Root - Redirect to setup or dashboard */}
-        <Route
-          path="/"
-          element={<Navigate to={currentOrg ? '/dashboard' : '/setup'} />}
-        />
+        {/* Protected routes */}
+        {user ? (
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/discovery" element={<EnterpriseDiscovery />} />
+            <Route path="/assessment/:assessmentId" element={<AssessmentResults />} />
+            <Route path="/policies" element={<Policies />} /> 
+            <Route path="/policies/:policyId" element={<PolicyDetails />} />
+            <Route path="/alerts" element={<Alerts />} />
+            <Route path="/frameworks" element={<ComplianceFrameworks />} />
+            <Route path="/audit" element={<AuditLog />} />
+            <Route path="/settings/*" element={<Settings />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/signin" replace />} />
+        )}
 
-        {/* Catch all */}
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
-
-export default App;

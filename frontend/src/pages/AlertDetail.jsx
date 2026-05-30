@@ -6,6 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import api from '../services/api';
+import '../styles/settings.css';
+import '../styles/components.css';
+import '../styles/variables.css';
 
 export default function AlertDetail() {
   const { alertId } = useParams();

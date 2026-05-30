@@ -1,0 +1,40 @@
+.audit-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.audit-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.audit-table {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.audit-table table {
+  width: 100%;
+}
+
+.timestamp {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+}
+
+.action {
+  font-weight: var(--font-weight-medium);
+}
+
+.actor {
+  font-size: var(--font-size-sm);
+}
+
+.details code {
+  background: var(--color-background-secondary);
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+}

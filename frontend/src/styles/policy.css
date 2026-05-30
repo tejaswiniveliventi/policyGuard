@@ -1,0 +1,51 @@
+.policy-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.policy-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+  margin-top: var(--spacing-md);
+}
+
+.policy-version,
+.policy-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.policy-content {
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xl);
+}
+
+.policy-content h1,
+.policy-content h2,
+.policy-content h3 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.policy-content ul,
+.policy-content ol {
+  margin-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.policy-content li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.policy-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  justify-content: flex-end;
+}

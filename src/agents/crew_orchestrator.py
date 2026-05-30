@@ -133,7 +133,7 @@ class CrewOrchestrator:
                 generated_from={
                     "web_data_sources": list(web_data.keys()),
                     "gap_count": len(gaps.get("gaps", [])),
-                    "model_used": "groq-mixtral-8x7b",
+                    "model_used": "llama-3.1-8b-instant",
                 },
             )
             db.add(policy)

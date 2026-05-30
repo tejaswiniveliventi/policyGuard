@@ -10,7 +10,7 @@ logger = get_logger("policyguard.services.llm.groq")
 class GroqLLMProvider(BaseLLMProvider):
     """Groq LLM provider."""
 
-    def __init__(self, api_key: str, model: str = "mixtral-8x7b-32768"):
+    def __init__(self, api_key: str, model: str = "llama-3.1-8b-instant"):
         try:
             from groq import Groq
 

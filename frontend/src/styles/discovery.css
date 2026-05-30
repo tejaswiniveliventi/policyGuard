@@ -1,0 +1,408 @@
+/* ==========================================================================
+   DISCOVERY FORM GLOBAL LAYOUT
+   ========================================================================== */
+
+.discovery-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+/* FORM SECTIONS CONTAINER */
+.form-section {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.section-header {
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-tertiary);
+  padding-bottom: var(--spacing-lg);
+}
+
+.section-header h3 {
+  margin-bottom: var(--spacing-sm);
+  margin-top: 0;
+}
+
+.section-header p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.section-instruction {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-md);
+  line-height: var(--line-height-normal);
+}
+
+/* ==========================================================================
+   FORM GROUPS & FIELDS
+   ========================================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
+/* Inputs, Selectors and Textarea Fields */
+.form-input,
+input[type='text'],
+input[type='number'],
+input[type='date'],
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-background-info);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Layout Grid Row */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+/* ==========================================================================
+   CHECKBOXES & RADIOS (Fixed class binding mismatches)
+   ========================================================================== */
+
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+/* Unified target structural layouts for JSX bindings */
+.checkbox-item,
+.checkbox-label,
+.radio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  cursor: pointer;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  background: transparent;
+  transition: background-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.checkbox-item:hover,
+.checkbox-label:hover,
+.radio-item:hover {
+  background: var(--color-background-secondary);
+}
+
+/* Control Elements alignment metrics */
+.checkbox-item input[type='checkbox'],
+.checkbox-label input[type='checkbox'],
+.radio-item input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.checkbox-item span,
+.checkbox-label span,
+.radio-item span {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.checkbox-description {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+  line-height: var(--line-height-normal);
+  font-weight: normal !important;
+}
+
+.checkbox-help-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  margin-bottom: var(--spacing-md);
+}
+
+/* ==========================================================================
+   DYNAMIC STRUCTURAL CONTAINERS (AI / Vendors / Section Skippers)
+   ========================================================================== */
+
+/* Notification Boxes */
+.tip-box {
+  padding: var(--spacing-lg);
+  background: var(--color-background-info);
+  border: 1px solid var(--color-border-info);
+  border-radius: var(--radius-md);
+  color: var(--color-text-info);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.tip-box strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Section Skip Layout Blocks */
+.skip-section-wrapper {
+  margin-bottom: var(--spacing-xl);
+  background: var(--color-background-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-tertiary);
+}
+
+.skip-notice-box {
+  padding: var(--spacing-2xl);
+  text-align: center;
+  color: var(--color-text-secondary);
+  border: 2px dashed var(--color-border-secondary);
+  border-radius: var(--radius-md);
+  background: var(--color-background-secondary);
+}
+
+/* Content Element Repeaters */
+.systems-container,
+.vendors-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) 0;
+  box-sizing: border-box;
+}
+
+.systems-title,
+.vendors-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.system-wrapper,
+.vendor-card {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+  animation: slideIn var(--transition-base) ease-out;
+}
+
+.system-header,
+.vendor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+
+.system-header h4,
+.vendor-header h4,
+.system-header h5,
+.vendor-header h5 {
+  margin: 0;
+  flex: 1;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+}
+
+.system-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-md);
+}
+
+/* Empty State Indicators */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+.empty-hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-top: var(--spacing-xs) !important;
+}
+
+/* Cloud Matrix Platform grid layout overrides */
+.cloud-providers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+/* Maturity Index Metrics Scale */
+.maturity-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.maturity-level {
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  line-height: var(--line-height-normal);
+}
+
+.maturity-level strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   INPUT SYSTEM FORM VALIDATIONS & ALERTS
+   ========================================================================== */
+
+/* Form State Validation Visual Feedbacks */
+input:invalid:not(:placeholder-shown),
+select:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--color-danger);
+}
+
+input:invalid:focus:not(:placeholder-shown),
+select:invalid:focus:not(:placeholder-shown),
+textarea:invalid:focus:not(:placeholder-shown) {
+  box-shadow: 0 0 0 3px rgba(224, 75, 74, 0.15);
+}
+
+.form-error {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-help {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .form-section {
+    padding: var(--spacing-lg);
+  }
+
+  .systems-container,
+  .vendors-container {
+    padding: var(--spacing-lg);
+  }
+
+  .cloud-providers {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-item,
+  .checkbox-label,
+  .radio-item {
+    padding: var(--spacing-sm);
+  }
+
+  .system-header,
+  .vendor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}

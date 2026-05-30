@@ -48,7 +48,7 @@ class AppConfig:
 
     # LLM Configuration
     LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq").lower()
-    LLM_MODEL = os.getenv("LLM_MODEL", "mixtral-8x7b-32768")
+    LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.1-8b-instant")
     LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.0"))
     LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "2000"))
 

@@ -1,0 +1,46 @@
+.settings-container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.settings-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.settings-tab {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: none;
+  text-align: left;
+  color: var(--color-text-secondary);
+}
+
+.settings-tab:hover,
+.settings-tab.active {
+  background: var(--color-background-info);
+  color: var(--color-text-info);
+}
+
+.settings-form {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+}
+
+.settings-form h2 {
+  margin-bottom: var(--spacing-xl);
+}
+
+.settings-actions {
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  gap: var(--spacing-md);
+}
